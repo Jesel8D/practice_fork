@@ -1,44 +1,75 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="./styles.css">
-    <script type="module" src="./main.js"></script>
-</head>
-<body>
-    <div class="container">
-        <div class="music-player">
-            <nav>
-                <div class="circle">
-                    <span>back</span>
-                </div>
-                <div class="circle">
-                    <span>bars</span>
-                </div>
-            </nav>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="styles.css">
+    <title>Music player</title>
+  </head>
+  <body>
+    <header class="header">
+      <div class="header__brand">
+        <a href="/" class="header__logo-link" aria-label="Ir al inicio">
+          <img
+            src="/media/music-logo-icon-png-31.png"
+            alt="Logo de Musikkkkk"
+            class="header__logo-img"
+          />
+        </a>
+        <h1 class="header__title">Musikkkkk</h1>
+      </div>
+      <nav class="header__nav" aria-label="Navegacion principal">
+        <ul class="header__nav-list">
+            <li class="header__nav-item">
+                <a href="/" class="header__nav-link">Proximo</a>
+            </li>
+        </ul>
+        
+      </nav>
+    </header>
 
-            <div id="song-details">
-                <img src="./media/default_img.jpg" alt="" id="song-img">
-                <h1 id="title"></h1>
-                <h3 id="artist"></h3>
-            </div>
-
-            <div class="audio">
-                <audio controls id="media" hidden>
-                    <!--<source id="audio" src="" type="audio/mpeg">-->
-                </audio>
-                <input type="range" value="0" id="progress">
-            </div>
-
-            <div class="song-controls">
-                <span id="lastest">last</span>
-                <span id="play" class="play">play</span>
-                <span id="forward">forward</span>
-            </div>
-
+    <main id="main">
+      <section class="player" aria-label="Reproductor de música">
+        <div class="player__cover">
+          <img
+            src="/media/default_img.jpg"
+            alt="Carátula del álbum o canción"
+            class="player__cover-img"
+          />
         </div>
-    </div>
-</body>
+
+        <div class="player__meta">
+          <h2 class="player__title">Aquí irá el nombre de la canción</h2>
+          <p class="player__artist">Aquí irá el nombre del artista</p>
+        </div>
+        <div class="player__controls">
+          <button
+            class="player__button player__button--prev"
+            aria-label="Anterior"
+          >
+            ⏮
+          </button>
+          <button
+            class="player__button player__button--play"
+            aria-label="Reproducir/Pausar"
+          >
+            ⏯
+          </button>
+          <button
+            class="player__button player__button--next"
+            aria-label="Siguiente"
+          >
+            ⏭
+          </button>
+        </div>
+        <div class="player__progress">
+          <span class="player__time player__time--current">0:00</span>
+          <div class="player__bar">
+            <div class="player__bar-fill" style="width: 0%"></div>
+          </div>
+          <span class="player__time player__time--total">3:45</span>
+        </div>
+      </section>
+    </main>
+  </body>
 </html>
