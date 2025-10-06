@@ -1,39 +1,34 @@
-import AudioController from "/practice_fork/Domain/audioController";
+export default {
+    AudioController(playlist, audioHTMLElement){
+        this._nextSongs = playlist;
+        this._actualSong = this._nextSongs.pop();
+        this._controller = audioHTMLElement;
 
-const palyer = {
-    _progress_bar: dgiocument.getElementById("progress"),
-    _play_btn: document.getElementById("play"),
-    _last_btn: document.getElementById("lastest"),
-    _forwd_btn: document.getElementById("forward"),
-    _audioController: AudioController,
-    Player(songs){
-        this._progress_bar.max = 100;
-        this.progress_bar.value = 0;
-        const media_controller = document.getElementById("media");
-        const playlist = createPlaylist(sessionStorage, null);
-        this._audioController.AudioController(createPlaylist, media_controller);
     },
-    eventListeners() {
-        this._audioController._controller.addEventListener('timeupdate', function(){
-            progress_value = (player._audioController.currentTime / player._audioController.durayion) * 100;
-            player._progress_bar.value = progress_value;
-        });
-        this._progress_bar.addEventListener('input', function(){
-            player._audioController._controller.currentTime = (this.value/100) * player._audioController._controller.duration;
-        });
-        this._forwd_btn.addEventListener('click', function(){
-            AudioController._nextSong();
-        });
-        this._last_btn.addEventListener('click', function(){
-            AudioController.prevSong();
-        });
-        yhis._play_btn.addEventListener('click', function(){
-            player._AudioController.playPause(event.target.classList[0]);
-        });
-        this._audioController._controller.addEventListener('loadedmetadata', function(){
-            player._progress_bar.value = 0
-        })
+    _lastSongs: [],
+    _nextSongs: [],
+    _actualSong: null,
+    _controller: null,
+    nextSong() {
+        if(this._nextSongs.length !== 0){
+            this._lastSongs.push(this._actualSong);
+            this._actualSong = this._nextSongs.pop();
+        }
+    },
+    prevSong() {
+        if(this._lastSongs.length !== 0){
+            this._nextSongs.push(this._actualSong);
+            this._actualSong = this._lastSongs.pop();
+        }
+    },
+    loadSong(){
+        this._controller.src = this._actualSong.song_url;
+    },
+    playPause(action) {
+        if(action === 'play'){
+            this._controller.play();
+        }else{
+            this._controller.pause();
+        }
     }
 }
-
-export default player;
